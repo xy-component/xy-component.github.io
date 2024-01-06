@@ -5,13 +5,41 @@
     <script src="element.js"></script>
     <script src="//fit-text.github.io/element.js"></script>
     <style>
+        body {
+            font-family: sans-serif;
+            max-width: 1024px;
+            margin: 0 auto;
+            cursor: pointer;
+            background:beige;
+        }
+        a,
+        pre{
+            font-size: 1.5em;
+        }
         xy-component {
-            margin: 3em;
         }
     </style>
 </head>
 
 <body>
+    <fit-text>&lt;xy-component>&lt;/xy-component></fit-text>
+    <a href="https://github.com/xy-component/xy-component.github.io">GitHub repo</a>
+    <code><pre>
+    customElements.define("xy-component", class extends HTMLElement {
+        constructor(
+            x = document.createElement("b"), 
+            y = document.createElement("b")
+        ) {
+            super().attachShadow({ mode: "open" }).append("Mouse X: ", x, " Y: ", y);
+            Object.defineProperties(this, {
+                x: { get: v => Number(x.innerHTML), set: v => x.innerHTML = v },
+                y: { get: v => Number(y.innerHTML), set: v => y.innerHTML = v }
+            });
+            window.addEventListener("mousemove", e => (this.x = e.clientX, this.y = e.clientY));
+        }
+    });
+    </pre>
+        </code>
     <fit-text>
         <xy-component></xy-component>
     </fit-text>
