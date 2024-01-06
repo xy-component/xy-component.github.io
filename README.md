@@ -4,6 +4,7 @@
 ```html	
   <xy-component></xy-component>
 ```
+# Live: https://xy-component.github.io
 
 ## Using Native JavaScript
 
